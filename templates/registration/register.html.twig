@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block stylesheets %}
+<style>
+    @import url("{{ asset('styles/registration/register.css') }}");
+</style>
+{% endblock %}
+
+{% block main %}
+    <section class="login">
+        <h1>
+            Pas mal non ?<br>
+            <small>C'est français. 🐓</small>
+        </h1>
+
+        <nav class="group group-button full-width padding-small" aria-label="{% trans from 'security' %}_commons.connection-menu{% endtrans %}">
+            <a href="{{ path('app.login') }}" class="button">{% trans from 'security' %}_commons.login{% endtrans %}</a>
+            <a href="{{ path('app.register') }}" class="button selected" aria-current="page">{% trans from 'security' %}_commons.register{% endtrans %}</a>
+        </nav>
+
+        {% for flash_error in app.flashes('verify_email_error') %}
+            <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+        {% endfor %}
+
+        {{ form_errors(register) }}
+
+        {{ form_start(register) }}
+            <fieldset class="user-infos">
+                {{ form_row(register.lastName) }}
+                {{ form_row(register.firstName) }}
+                {{ form_row(register.username) }}
+                {{ form_row(register.email) }}
+                {{ form_row(register.plainPassword) }}
+                {{ form_row(register.agreeTerms) }}
+            </fieldset>
+
+            <button type="submit" class="button button-primary">Register</button>
+        {{ form_end(register) }}
+    </div>
+{% endblock %}

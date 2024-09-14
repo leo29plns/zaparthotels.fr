@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% set locales = supported_locales|split('|') %}
+<html lang="{{ app.locale }}">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="canonical" href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}">
+
+        {% for locale in locales %}
+            <link rel="alternate" hreflang="{{ locale }}" href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': locale})) }}">
+        {% endfor %}
+
+        <title>{% block title %}{% trans from '_commons' %}app.header.title{% endtrans %}{% endblock %} - {{ config.site_name }}</title>
+
+        <meta name="description" content="{% block description %}{% trans from '_commons' %}app.header.description{% endtrans %}{% endblock %}">
+
+        <link rel="shortcut icon" sizes="any" href="{{ app.request.getSchemeAndHttpHost() ~ '/favicon.svg' }}" type="image/svg+xml">
+        <link rel="shortcut icon" href="{{ app.request.getSchemeAndHttpHost() ~ '/favicon.ico' }}">
+
+        <link rel="apple-touch-icon" href="{{ app.request.getSchemeAndHttpHost() ~ '/apple-touch-icon.png' }}">
+
+        <link rel="stylesheet" href="{{ asset('styles/_commons/reset.css') }}">
+        <link rel="stylesheet" href="{{ asset('styles/_commons/primitives.css') }}">
+        <link rel="stylesheet" href="{{ asset('styles/_commons/tokens.css') }}">
+        <link rel="stylesheet" href="{{ asset('styles/_commons/accessibility.css') }}">
+        <link rel="stylesheet" href="{{ asset('styles/_commons/main.css') }}">
+        <link rel="stylesheet" href="{{ asset('styles/_commons/components.css') }}">
+        <link rel="stylesheet" href="{{ asset('styles/_commons/header.css') }}">
+        <link rel="stylesheet" href="{{ asset('styles/_commons/footer.css') }}">
+
+        <link rel="stylesheet" href="{{ asset('fonts/satoshi/fonts.css') }}">
+        <link rel="stylesheet" href="{{ asset('fonts/josefin_sans/fonts.css') }}">
+
+        {% block stylesheets %}
+        {% endblock %}
+
+        {% block javascripts %}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
+        {% endblock %}
+
+        <meta name="author" content="PLANUS Léo">
+    </head>
+    <body>
+        <div class="wrapper">
+            {% include '_commons/header.html.twig' %}
+            <main id="main" class="{{ app.request.get('_route')|replace({'.' : '-'}) }}">
+                {% block main %}{% endblock %}
+            </main>
+            {% include '_commons/footer.html.twig' %}
+        </div>
+    </body>
+</html>

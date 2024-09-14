@@ -1,0 +1,21 @@
+{%- block form_label -%}
+    {% if label is not same as(false) -%}
+        {% if not compound -%}
+            {% set label_attr = label_attr|merge({'for': id}) %}
+        {%- endif -%}
+        {% if required -%}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+        {%- endif -%}
+        <{{ element|default('label') }}{% if label_attr %}{% with { attr: label_attr } %}{{ block('attributes') }}{% endwith %}{% endif %}>
+            {%- if form.vars.block_prefixes[2] == 'radio' -%}
+                <div class="widget"><twig:ux:icon name="lucide:dot" /></div>
+                <div>{{- block('form_label_content') -}}</div>
+            {%- elseif form.vars.block_prefixes[1] == 'checkbox' -%}
+                <div class="widget"><twig:ux:icon name="lucide:check" /></div>
+                <div>{{- block('form_label_content') -}}</div>
+            {%- else -%}
+                {{- block('form_label_content') -}}
+            {%- endif -%}
+        </{{ element|default('label') }}>
+    {%- endif -%}
+{%- endblock form_label -%}

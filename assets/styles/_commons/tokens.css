@@ -1,0 +1,74 @@
+:root {
+    /* COLORS */
+    
+
+    color-scheme: light dark;
+
+    /* base */
+    --color-base-dark-hover: oklch(from var(--base-dark) 50% calc(.12 + (sin(0.54 * pi) * c)) h);
+    --color-base-light-hover: oklch(from var(--base-light) 50% calc(.12 + (sin(0.54 * pi) * c)) h);
+
+    /* text */
+    --color-text: var(--base-dark);
+
+    /* background */
+    --color-background: var(--base-light);
+
+    /* primary */
+    --color-primary: #3942a7;
+
+    /* secondary */
+    --color-secondary: #7981d8;
+
+    /* secondary */
+    --color-accent: #232eaf;
+
+
+    /* PADDING */
+    --size-padding-main: 1.125rem;
+}
+
+
+@media (min-width: 48rem) {
+    :root {
+        /* PADDING */
+
+
+        --size-padding-main: 1.75rem;
+    }
+}
+
+@media (min-width: 64rem) {
+    :root {
+        /* PADDING */
+
+
+        --size-padding-main: 3rem;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* COLORS */
+
+
+        /* text */
+        --color-text: var(--base-light);
+
+        /* background */
+        --color-background: var(--base-dark);
+
+        /* primary */
+        --color-primary: #5861c6;
+
+        /* secondary */
+        --color-secondary: #272f86;
+
+        /* secondary */
+        --color-accent: #505cdc;
+    }
+}
+
+object {
+    color-scheme: normal;
+}

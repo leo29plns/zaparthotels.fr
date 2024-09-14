@@ -1,0 +1,54 @@
+:root {
+    /* COLORS */
+
+
+    /* base */
+    --base-dark: #242438;
+    --base-light: #f5f6fa;
+
+    /* FONTS */
+
+
+    /* sizes */
+    --text-base: .875rem; /* p */
+    --text-lg: 1rem; /* h6 */
+    --text-xl: 1.125rem; /* h5 */
+    --text-2xl: 1.25rem; /* h4 */
+    --text-3xl: 1.5rem; /* h3 */
+    --text-4xl: 1.875rem; /* h2 */
+    --text-5xl: 2.25rem; /* h1 */
+
+
+    /* PADDINGS */
+
+
+    /* glutter */
+    --glutter-normal: 1rem;
+}
+
+@media (min-width: 40rem) {
+    :root {
+        /* PADDINGS */
+
+
+        /* glutter */
+        --glutter-normal: 2.5rem;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+
+    :root {
+        /* COLORS */
+
+
+        /* base */
+        --base-dark: #05060a;
+        --base-light: #c7c7db;
+    }
+}
+
+
+@media (hover: hover) and (pointer: fine) {
+    
+}

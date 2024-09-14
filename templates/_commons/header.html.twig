@@ -1,0 +1,34 @@
+<nav class="a11y-skip-content">
+    <ul>
+        <li><a href="#main">{% trans from '_commons' %}a11y.skip-content{% endtrans %}</a></li>
+    </ul>
+</nav>
+<header>
+    <a href="{{ path('app.home.index') }}" class="logo">
+        <object tabindex="-1" type="image/svg+xml" data="{{ asset('images/_commons/logos/symfoblog_logo_responsive.svg') }}" alt="logo"></object>
+        <span class="sr-only">{{ config.site_name }}</span>
+    </a>
+    <div class="side-panel">
+        <nav role="navigation" aria-label="{% trans from '_commons' %}header.main-menu{% endtrans %}" class="main-menu">
+            <ul>
+                <li><a href="{{ path('app.post.posts') }}" {% if app.request.get('_route') starts with 'app.post.posts' and not app.request.get('username') %}class="button button-tertiary padding-small selected" aria-current="page"{% else %}class="button button-tertiary padding-small"{% endif %}><twig:ux:icon name="lucide:library" />{% trans from '_commons' %}header.post.posts{% endtrans %}</a></li>
+            </ul>
+        </nav>
+        <nav role="navigation" aria-label="{% trans from '_commons' %}header.user-menu{% endtrans %}" class="user-menu">
+            <ul>
+                {% if app.user %}
+                    {% if is_granted('ROLE_EDITOR') %}
+                        <li><a href="{{ path('app.post.create') }}" {% if app.request.get('_route') starts with 'app.post.create' %}class="button button-tertiary padding-small selected" aria-current="page"{% else %}class="button button-tertiary padding-small"{% endif %}><twig:ux:icon name="lucide:circle-plus" />{% trans from '_commons' %}header.post.create{% endtrans %}</a></li>
+                        <li><a href="{{ path('app.post.posts', {'username': app.user.username}) }}" {% if app.request.get('_route') starts with 'app.post.posts' and app.request.get('username') == app.user.username %}class="button button-tertiary padding-small selected" aria-current="page"{% else %}class="button button-tertiary padding-small"{% endif %}><twig:ux:icon name="lucide:circle-user" />{% trans from '_commons' %}header.post.my{% endtrans %}</a></li>
+                    {% endif %}
+                    <li><a href="{{ path('app.logout') }}" class="button button-tertiary padding-small" data-turbo="false" class="logout"><twig:ux:icon name="lucide:log-out" />{% trans from '_commons' %}logout{% endtrans %}</a></li>
+                {% else %}
+                    <li><a href="{{ path('app.login') }}" {% if app.request.get('_route') starts with 'app.login' %}class="button button-secondary padding-small selected" aria-current="page"{% else %}class="button button-secondary padding-small"{% endif %}><twig:ux:icon name="lucide:log-in" />{% trans from '_commons' %}login{% endtrans %}</a></li>
+                    <li><a href="{{ path('app.register') }}" {% if app.request.get('_route') starts with 'app.register' %}class="button button-primary padding-small selected" aria-current="page"{% else %}class="button button-primary padding-small"{% endif %}>{% trans from '_commons' %}register{% endtrans %}</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+    <button type="button" data-dispatcher="headerSidePannel" data-action="open" class="side-panel-button button button-secondary burger" tabindex="-1"><twig:ux:icon name="lucide:menu" /><span class="sr-only">{% trans from '_commons' %}header.open{% endtrans %}</span></button>
+    <button type="button" data-dispatcher="headerSidePannel" data-action="close" class="side-panel-button button button-secondary close"><twig:ux:icon name="lucide:x" /><span class="sr-only">{% trans from '_commons' %}header.close{% endtrans %}</span></button>
+</header>

@@ -1,0 +1,152 @@
+/* FORM */
+
+/* form */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* input */
+fieldset {
+    display: grid;
+    gap: 1.5rem;
+}
+
+input[type="submit"], button[type="submit"] {
+    align-self: end;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    gap: .375rem;
+
+    input, label {
+        cursor: pointer;
+    }
+
+    & > input {
+        &:is([type="text"], [type="email"], [type="number"], [type="search"], [type="tel"], [type="url"], [type="password"]) {
+            background-color: var(--color-neutral-0);
+            padding: .5em 1.250em;
+            border-radius: .25rem;
+            width: 100%;
+        }
+
+        &:is([type="checkbox"], [type="radio"]) {
+            appearance: none;
+
+            &:focus-within {
+                outline: none;
+            }
+        }
+    }
+
+    &:has(> input:is([type="checkbox"], input[type="radio"])) {
+        label {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            width: fit-content;
+        }
+
+        .widget {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5em;
+            width: 1.25em;
+            height: 1.25em;
+            color: var(--color-body-background);
+            border: .09375em solid var(--color-neutral-400);
+            overflow: hidden;
+            transition: .125s ease-out;
+            transition-property: background-color;
+
+            svg {
+                opacity: 0;
+                transition: .25s ease;
+                transition-property: opacity, transform;
+                transform: translateX(-25%);
+            }
+        }
+    }
+
+    &:has(> input:is([type="checkbox"], input[type="radio"]):focus-visible) {
+        label {
+            outline: .125rem solid var(--a11y-500);
+        }
+    }
+
+    &:has(> input:is([type="checkbox"], input[type="radio"]):checked) {
+        .widget {
+            background-color: var(--color-neutral-400);
+
+            svg {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    }
+
+    &:has(input[type="checkbox"]) {
+        .widget {
+            border-radius: .375em;
+        }
+    }
+
+    &:has(input[type="radio"]) {
+        .widget {
+            border-radius: 999rem;
+        }
+    }
+
+    .inputs-password {
+        position: relative;
+
+        > input {
+            padding-right: 2.5em;
+        }
+
+        .toggle-password {
+            position: absolute;
+            width: 1.5em;
+            height: 1.5em;
+            right: 1.25em;
+            top: 50%;
+            transform: translate(50%, -50%);
+
+            &:has(input:focus-visible) {
+                outline: .125rem solid var(--a11y-500);
+            }
+
+            .eye {
+                svg {
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                    transition: .125s ease;
+                    transition-property: opacity;
+                }
+
+                &.on {
+                    svg {
+                        opacity: 0;
+                    }
+                }
+            }
+
+            &:has(input:checked) .eye {
+                &.on svg {
+                    opacity: 1;
+                }
+
+                &.off svg {
+                    opacity: 0;
+                }
+            }
+        }
+    }
+}

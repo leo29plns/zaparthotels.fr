@@ -1,0 +1,84 @@
+/* BUTTON */
+.button {
+    --button-color-var1: var(--base-dark);
+    --button-color-var2: var(--base-light);
+    --button-color-var1-hover: var(--color-base-dark-hover);
+    --button-color-var2-hover: var(--color-base-light-hover);
+
+    @media (prefers-color-scheme: dark) {
+        --button-color-var1: var(--base-light);
+        --button-color-var2: var(--base-dark);
+        --button-color-var1-hover: var(--color-base-light-hover);
+        --button-color-var2-hover: var(--color-base-dark-hover);
+    }
+
+    display: flex;
+    width: fit-content;
+    padding: .625em 1.375em;
+    border-radius: .75em;
+    font-weight: 500;
+    transition: .125s ease-out;
+    transition-property: color, background-color, border-color;
+    justify-content: start;
+    border: .09375em solid transparent;
+    text-align: center;
+
+    &.button-primary {
+        color: var(--button-color-var2);
+        /* background-color: var(--button-color-var1); */
+        background-color: var(--color-base-dark-hover);
+
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                background-color: var(--button-color-var1-hover);
+            }
+        }
+
+        &:active {
+            background-color: var(--color-neutral-500);
+        }
+    }
+
+    &.button-secondary {
+        color: var(--color-neutral-900);
+        border-color: var(--color-neutral-900);
+        background-color: var(--color-neutral-100);
+
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                background-color: var(--color-neutral-200);
+                border-color: var(--color-neutral-200);
+            }
+        }
+
+        &:active {
+            background-color: var(--color-neutral-300);
+            border-color: var(--color-neutral-300);
+        }
+    }
+
+    &.button-tertiary {
+        &.selected {
+            background-color: var(--color-neutral-200);
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                background-color: var(--color-neutral-200);
+            }
+        }
+
+        &:active {
+            background-color: var(--color-neutral-300);
+        }
+    }
+}
+
+.button.padding-small, .padding-small .button {
+    padding: .5em 1.25em;
+}
+
+/* HEADING */
+h1.page-heading {
+    font-size: 5rem;
+}

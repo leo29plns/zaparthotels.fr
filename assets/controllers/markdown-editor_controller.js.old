@@ -1,0 +1,51 @@
+import { Controller } from '@hotwired/stimulus';
+
+/*
+ * This is an example Stimulus controller!
+ *
+ * Any element with a data-controller="hello" attribute will cause
+ * this controller to be executed. The name "hello" comes from the filename:
+ * hello_controller.js -> "hello"
+ *
+ * Delete this file or adapt it for your use!
+ */
+export default class extends Controller {
+    connect = () => {
+        this.init();
+
+        this.element.addEventListener('click', () => {
+            switch (this.element.dataset['action']) {
+                case 'close':
+                    this.toggleSidePanel(false);
+                    break;
+                case 'open':
+                    this.toggleSidePanel(true);
+                    break;
+            }
+        });
+    }
+
+    init = () => {
+        const $header = document.querySelector('body > .wrapper > header');
+
+        this.$sidePanel = $header.querySelector('.side-panel');
+        this.$sidePanelBackGround = $header.querySelector('.side-panel-background');
+        this.$wrapper = document.querySelector('body > .wrapper');
+        
+        this.desktopMediaQuery = window.matchMedia('(min-width: 64rem)');
+
+        this.desktopMediaQuery.addEventListener('change', this.onDesktop)
+    }
+
+    onDesktop = (desktopMediaQuery) => {
+        if (desktopMediaQuery.matches) {
+            this.toggleSidePanel(false);
+        }
+    }
+
+    toggleSidePanel = (state) => {
+        this.$sidePanel.classList.toggle('active', state);
+        this.$sidePanelBackGround.classList.toggle('active', state);
+        this.$wrapper.classList.toggle('overflow-hidden', state);
+    }
+}

@@ -1,0 +1,132 @@
+body {
+    /* MAIN FONT */
+    font-family: 'Satoshi', sans-serif;
+    color: var(--color-text);
+    background-color: var(--color-background);
+    transition: .125s ease;
+    transition-property: background-color;
+
+    > .wrapper {
+        position: relative;
+        overflow-x: hidden;
+        height: 100dvh;
+
+        > main:not(:has(.no-flow)) {
+            padding: 2.5rem 0;
+        }
+    }
+}
+
+/* FONTS SIZES */
+h1 {
+    font-size: var(--text-5xl);
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+h2 {
+    font-size: var(--text-4xl);
+}
+
+h3 {
+    font-size: var(--text-3xl);
+}
+
+h4 {
+    font-size: var(--text-2xl);
+}
+
+h5 {
+    font-size: var(--text-xl);
+}
+
+h6 {
+    font-size: var(--text-lg);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+}
+
+p, li, figcaption {
+    font-size: var(--text-base);
+    max-width: 75ch;
+    text-wrap: pretty;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* ICONS */
+.icon {
+    aspect-ratio: 1 / 1;
+    display: block;
+    width: 1em;
+    height: 1em;
+}
+
+a:has(> .icon) {
+    display: flex;
+    align-items: center;
+    gap: .25em;
+}
+
+/* TURBO */
+.turbo-progress-bar {
+    height: .125rem;
+    background-color: var(--color-accent);
+}
+
+/* GENERIC DECLARATIONS */
+.overflow-hidden {
+    overflow: hidden;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    *:has(:target) {
+        scroll-behavior: smooth;
+        scroll-padding-top: 3rem;
+    }
+}
+
+/* BREAKPOINTS */
+@media (min-width: 40rem) {
+
+}
+
+@media (min-width: 48rem) {
+
+}
+
+@media (min-width: 64rem) {
+
+}
+
+@media (min-width: 80rem) {
+
+}
+
+@media (min-width: 96rem) {
+
+}
+
+a {
+    color: var(--color-accent);
+
+    &:active {
+        color: var(--color-accent); /* TODO */
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    img.dark-filter {
+        filter: brightness(.8) contrast(1.2);
+    }
+}
+
+@media (prefers-reduced-motion) {
+    *, *::before, *::after {
+        transition-duration: 0s !important;
+    }
+}

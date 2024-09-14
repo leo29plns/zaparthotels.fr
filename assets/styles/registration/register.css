@@ -1,0 +1,56 @@
+@import url('../_commons/components/group-button.css');
+@import url('../_commons/components/form.css');
+
+.app-register {
+    display: flex;
+    justify-content: center;
+
+    h1 {
+        font-size: var(--text-4xl);
+        line-height: .75;
+    }
+    
+    h1 small {
+        font-size: var(--text-2xl);
+    }
+    
+    section.login {
+        width: 100%;
+        max-width: 25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    form fieldset.user-infos {
+        grid-template-areas: "last-name first-name"
+                            "username username"
+                            "email email"
+                            "password password"
+                            "terms terms";
+    }
+    
+    form fieldset.user-infos > .inputs:nth-of-type(1) {
+        grid-area: last-name;
+    }
+    
+    form fieldset.user-infos > .inputs:nth-of-type(2) {
+        grid-area: first-name;
+    }
+    
+    form fieldset.user-infos > .inputs:nth-of-type(3) {
+        grid-area: username;
+    }
+    
+    form fieldset.user-infos > .inputs:nth-of-type(4) {
+        grid-area: email;
+    }
+    
+    form fieldset.user-infos > .inputs:nth-of-type(5) {
+        grid-area: password;
+    }
+    
+    form fieldset.user-infos > .inputs:nth-of-type(6) {
+        grid-area: terms;
+    }
+}

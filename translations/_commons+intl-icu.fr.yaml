@@ -1,0 +1,16 @@
+a11y:
+    skip-content: Aller au contenu principal
+
+login: Connexion
+register: Inscription
+logout: Déconnexion
+
+header:
+    open: Ouvrir le menu
+    close: Fermer le menu
+    main-menu: Menu principal
+    user-menu: Menu utilisateur
+    post:
+        create: Nouveau billet
+        my: Mes billets
+        posts: Archives

@@ -1,0 +1,14 @@
+twig:
+    file_name_pattern: '*.twig'
+    globals:
+        config: '%config%'
+        supported_locales: '%app.supported_locales%'
+    form_themes:
+        - '_commons/forms/form_row.html.twig'
+        - '_commons/forms/form_label.html.twig'
+        - '_commons/forms/choice_widget_expanded.html.twig'
+        - '_commons/forms/password_widget.html.twig'
+
+when@test:
+    twig:
+        strict_variables: true

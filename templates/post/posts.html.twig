@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Posts{% endblock %}
+
+{% block main %}
+
+{% for post in posts %}
+<article>
+    <a href="{{ path('app.post.index', {'slug': post.slug}) }}">
+        <header>
+            <h2>{{ post.title }}</h2>
+        </header>
+        <footer>
+            <p>Updated at : <time datetime="{{ post.updatedAt|date("Y-m-d\TH:i:sP") }}">{{ post.updatedAt|format_datetime(locale='fr', timezone='Europe/Paris') }}</time></p>
+        </footer>
+    </a>
+    <a href="{{ path('app.post.posts', {'username': post.user.username}) }}">{{ post.user.lastName  ~ ' ' ~ post.user.firstName }}</a>
+</article>
+{% endfor %}
+
+{% if page > 1 %}
+<a href="{{ path('app.post.posts', {page: page - 1}) }}">Page précédente</a>
+{% endif %}
+
+{% if page < maxPage %}
+<a href="{{ path('app.post.posts', {page: page + 1}) }}">Page suivante</a>
+{% endif %}
+
+{% endblock %}

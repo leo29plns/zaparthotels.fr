@@ -1,0 +1,27 @@
+/* GROUP BUTTON */
+.group.group-button {
+    display: flex;
+    width: fit-content;
+    padding: .25em;
+    border-radius: .75em;
+    background-color: var(--color-neutral-0);
+
+    .button {
+        border-radius: .5em;
+
+        &:not(.selected) {
+            background-color: transparent;
+            color: var(--color-neutral-500);
+            border-color: transparent;
+        }
+    }
+
+    &.full-width {
+        width: 100%;
+
+        .button {
+            flex-grow: 1;
+            justify-content: center;
+        }
+    }
+}

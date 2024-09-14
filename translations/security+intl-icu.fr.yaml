@@ -1,0 +1,5 @@
+_commons:
+    login: Se connecter
+    register: S'inscrire
+    connection-menu: Menu de connexion
+    password-visibility: Afficher le mot de passe

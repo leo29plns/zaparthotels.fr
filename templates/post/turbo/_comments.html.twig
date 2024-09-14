@@ -1,0 +1,16 @@
+{% if formComment %}
+    {{ form_start(formComment) }}
+    {{ form_row(formComment.content) }}
+    <input type="submit">
+    {{ form_end(formComment) }}
+{% endif %}
+
+{% for comment in comments %}
+<article>
+    <p>{{ comment.content }}</p>
+    <footer>
+        <p>{{ comment.user.lastName ~ ' ' ~ comment.user.firstName }}</p>
+        <p><time datetime="{{ comment.createdAt|date("Y-m-d\\TH:i:sP") }}">{{ comment.createdAt|format_datetime(locale='fr', timezone='Europe/Paris') }}</time></p>
+    </footer>
+</article>
+{% endfor %}

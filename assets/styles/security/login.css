@@ -1,0 +1,24 @@
+@import url('../_commons/components/group-button.css');
+@import url('../_commons/components/form.css');
+
+.app-login {
+    display: flex;
+    justify-content: center;
+
+    h1 {
+        font-size: var(--text-4xl);
+        line-height: .75;
+    }
+
+    h1 small {
+        font-size: var(--text-2xl);
+    }
+
+    section.login {
+        width: 100%;
+        max-width: 25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+}

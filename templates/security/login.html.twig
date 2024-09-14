@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% trans from 'security' %}login.page-title{% endtrans %}{% endblock %}
+
+{% block stylesheets %}
+{# <link rel="stylesheet" href="{{ asset('styles/security/login.css') }}"> #}
+<style>
+    @import url("{{ asset('styles/security/login.css') }}");
+</style>
+{% endblock %}
+
+{% block main %}
+    <section class="login">
+        <h1>
+            Pas mal non ?<br>
+            <small>C'est français. 🐓</small>
+        </h1>
+
+        <nav class="group group-button full-width padding-small" aria-label="{% trans from 'security' %}_commons.connection-menu{% endtrans %}">
+            <a href="{{ path('app.login') }}" class="button selected" aria-current="page">{% trans from 'security' %}_commons.login{% endtrans %}</a>
+            <a href="{{ path('app.register') }}" class="button">{% trans from 'security' %}_commons.register{% endtrans %}</a>
+        </nav>
+        
+        <form method="POST">
+            {% if error %}
+                <p>{{ error.messageKey|trans(error.messageData, 'security') }}</p>
+            {% endif %}
+        
+            {% if app.user %}
+                <p>
+                    You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app.logout') }}">Logout</a>
+                </p>
+            {% endif %}
+        
+            <fieldset>
+                <div class="inputs">
+                    <label for="inputUsername">Username</label>
+                    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" autocapitalize="off" required autofocus>
+                </div>
+                <div class="inputs">
+                    <label for="inputPassword">Password</label>
+                    <div class="inputs inputs-password" data-controller="form-password">
+                        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                        <label class="toggle-password">
+                            <input type="checkbox" class="sr-only">
+                            <span class="sr-only">{% trans from 'security' %}_commons.password-visibility{% endtrans %}</span>
+                            <span class="eye on"><twig:ux:icon name="lucide:eye" /></span>
+                            <span class="eye off"><twig:ux:icon name="lucide:eye-off" /></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="inputs">
+                    <label for="rememberMe">
+                        <div class="widget"><twig:ux:icon name="lucide:check" /></div>
+                        <div>Remember me</div>
+                    </label>
+                    <input type="checkbox" id="rememberMe" name="_remember_me">
+                </div>
+            </fieldset>
+        
+            <input type="hidden" name="_csrf_token"
+                value="{{ csrf_token('authenticate') }}"
+            >
+        
+            <button class="button button-primary" type="submit">Sign in</button>
+        </form>
+    </section>
+{% endblock %}
